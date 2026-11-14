@@ -115,24 +115,16 @@ Each regular expression AST node is converted into an equivalent NFA fragment po
    $$q_{\text{accept}}(s) \xrightarrow{\epsilon} q_{\text{start}}(t) \quad (0\text{ new states}, 1\text{ new transition})$$
 4. **Union ($N(s) \mid N(t)$):**
    Creates new start and accepting states, branching via $\epsilon$:
-
-   $$
-   \begin{aligned}
-   q_{\text{new start}} &\xrightarrow{\epsilon} q_{\text{start}}(s), \quad q_{\text{new start}} \xrightarrow{\epsilon} q_{\text{start}}(t) \\
-   q_{\text{accept}}(s) &\xrightarrow{\epsilon} q_{\text{new accept}}, \quad q_{\text{accept}}(t) \xrightarrow{\epsilon} q_{\text{new accept}}
-   \end{aligned}
-   $$
-
+   - $q_{\text{new start}} \xrightarrow{\epsilon} q_{\text{start}}(s)$
+   - $q_{\text{new start}} \xrightarrow{\epsilon} q_{\text{start}}(t)$
+   - $q_{\text{accept}}(s) \xrightarrow{\epsilon} q_{\text{new accept}}$
+   - $q_{\text{accept}}(t) \xrightarrow{\epsilon} q_{\text{new accept}}$
 5. **Kleene Star ($N(s)^*$):**
    Creates new start and accepting states with entry, skip, loopback, and exit $\epsilon$-transitions:
-
-   $$
-   \begin{aligned}
-   q_{\text{new start}} &\xrightarrow{\epsilon} q_{\text{start}}(s), \quad q_{\text{new start}} \xrightarrow{\epsilon} q_{\text{new accept}} \\
-   q_{\text{accept}}(s) &\xrightarrow{\epsilon} q_{\text{start}}(s), \quad q_{\text{accept}}(s) \xrightarrow{\epsilon} q_{\text{new accept}}
-   \end{aligned}
-   $$
-
+   - $q_{\text{new start}} \xrightarrow{\epsilon} q_{\text{start}}(s)$
+   - $q_{\text{new start}} \xrightarrow{\epsilon} q_{\text{new accept}}$
+   - $q_{\text{accept}}(s) \xrightarrow{\epsilon} q_{\text{start}}(s)$
+   - $q_{\text{accept}}(s) \xrightarrow{\epsilon} q_{\text{new accept}}$
 
 ---
 
